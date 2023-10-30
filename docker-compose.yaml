@@ -1,0 +1,13 @@
+version: '3.1'
+services:
+  restapp:
+    container_name: go-rest-app
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: go-rest-app:v1.0.0
+    ports:
+      - 8080:80
+    # volumes:
+    #   - ~/.kube/:/edgenet/.kube/
