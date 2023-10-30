@@ -1,4 +1,4 @@
-FROM golang:1.18-alpine AS build
+FROM golang:1.21.3-alpine AS build
 
 # The current folder is set to app
 WORKDIR /app
