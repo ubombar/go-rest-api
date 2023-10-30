@@ -9,5 +9,3 @@ services:
     image: go-rest-app:v1.0.0
     ports:
       - 8080:80
-    # volumes:
-    #   - ~/.kube/:/edgenet/.kube/
