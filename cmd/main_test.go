@@ -1,11 +1,9 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ubombar/go-rest-api/pkg/generated/contract"
@@ -20,27 +18,7 @@ func TestMain(t *testing.T) {
 		return
 	}
 
-	num, err := cl.BlockNumber(context.TODO())
-
-	if err != nil {
-		t.Fail()
-		return
-	}
-
-	fmt.Printf("num: %v\n", num)
-
-	address := common.HexToAddress("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
-
-	balance, err := cl.BalanceAt(context.TODO(), address, nil)
-
-	if err != nil {
-		t.Fail()
-		return
-	}
-
-	fmt.Printf("balance.String(): %v\n", balance.String())
-
-	contractAddress := common.HexToAddress("0x8464135c8f25da09e49bc8782676a84730c318bc")
+	contractAddress := common.HexToAddress("0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9")
 
 	cc, err := contract.NewContract(contractAddress, cl)
 
@@ -49,16 +27,14 @@ func TestMain(t *testing.T) {
 		return
 	}
 
-	callOpts := &bind.CallOpts{Context: context.TODO(), Pending: false}
-
-	adminAddress, err := cc.GetAdmin(callOpts)
+	bal, err := cc.SeeBalance(nil)
 
 	if err != nil {
-		fmt.Printf("err: %v\n", err)
+		fmt.Printf("wowowowoowowo: %v\n", err)
 		t.Fail()
 		return
 	}
 
-	fmt.Printf("adminAddress: %v\n", adminAddress)
+	fmt.Printf("Balance: %v\n", bal)
 
 }
